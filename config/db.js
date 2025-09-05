@@ -3,9 +3,10 @@ const { Pool } = require('pg');
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
-  database: process.env.DB_NAME || 'eston_admissions',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'Ap6H74GRJypDmAZi',
+  database: process.env.DB_NAME || 'eston',
+  user: process.env.DB_USER || 'eston',
+  password: process.env.DB_PASSWORD || 'ADMIN',
+  NODE_ENV=production,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
