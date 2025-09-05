@@ -1,0 +1,6 @@
+- [ ] Add errors state to ApplicationForm component
+- [ ] Modify InputField, SelectField, TextAreaField components to accept and display error prop
+- [ ] Fix validateStep function: correct field lists for steps 1 and 2, remove step 3, setErrors instead of alert
+- [ ] Update form JSX to pass error props to each field component
+- [ ] Add error display for declaration checkbox
+- [ ] Verify the changes work as expected
