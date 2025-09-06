@@ -929,7 +929,7 @@ const ApplicationForm = () => {
                 <a href="https://www.eston.edu.gh/our-courses/" className="font-semibold">Courses</a>
                 <a href="https://www.eston.edu.gh/about-us/" className="font-semibold">About Us</a>
                 <a href="https://www.eston.edu.gh/contact-us/" className="font-semibold">Contact Us</a>
-                <a href="/admin" className="font-semibold">Admin</a>
+                <a href="../admin" className="font-semibold">Admin</a>
               </nav>
               <div className="header-right-icon ml-4 hidden lg:block">
                 <ul className="flex items-center gap-4 m-0">
