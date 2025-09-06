@@ -14,6 +14,8 @@ import {
 import * as XLSX from 'xlsx';
 import AdminNavbar from './AdminNavbar';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const AdminUsers = () => {
   const { user } = useAuth();
   const [users, setUsers] = useState([]);
@@ -37,7 +39,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-  const response = await fetch('http://localhost:5000/api/admin/users', {
+      const response = await fetch(`${API_URL}/api/admin/users`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -61,8 +63,8 @@ const AdminUsers = () => {
     
     try {
       const url = editingUser 
-        ? `http://localhost:5000/api/admin/users/${editingUser.id}`
-        : 'http://localhost:5000/api/admin/users';
+        ? `${API_URL}/api/admin/users/${editingUser.id}`
+        : `${API_URL}/api/admin/users`;
       
       const method = editingUser ? 'PUT' : 'POST';
       
@@ -118,7 +120,7 @@ const AdminUsers = () => {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+      const response = await fetch(`${API_URL}/api/admin/users/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -138,7 +140,7 @@ const AdminUsers = () => {
 
   const handleToggleStatus = async (userId, currentStatus) => {
     try {
-  const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/toggle-status`, {
+      const response = await fetch(`${API_URL}/api/admin/users/${userId}/toggle-status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
