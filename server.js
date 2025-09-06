@@ -31,18 +31,7 @@ app.use(limiter);
 const allowedOrigins = ['https://estonschool.onrender.com', 'http://localhost:3000'];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.log(`CORS blocked origin: ${origin}`);
-      // Instead of throwing an error, return false to deny the request
-      callback(null, false);
-    }
-  },
+  origin: allowedOrigins,
   credentials: true
 }));
 
