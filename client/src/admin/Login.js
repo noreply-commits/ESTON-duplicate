@@ -23,9 +23,9 @@ const Login = () => {
       if (result.success) {
         // Redirect based on role
         if (result.user?.role === 'admin') {
-          navigate('/admin/dashboard');
+          window.location.href = '/admin/dashboard';
         } else {
-          navigate('/dashboard');
+          window.location.href = '/dashboard';
         }
       }
     } catch (error) {
