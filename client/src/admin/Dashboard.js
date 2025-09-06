@@ -36,11 +36,20 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     fetchDashboardData();
+    // eslint-disable-next-line
   }, []);
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/dashboard`);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/admin/dashboard`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const { totalUsers, totalCourses, totalApplications, applicationStatistics } = response.data;
 
       setCounts({
@@ -51,6 +60,7 @@ const AdminDashboard = () => {
         approvedApplications: applicationStatistics?.approved_applications || 0,
         rejectedApplications: applicationStatistics?.rejected_applications || 0,
       });
+      setError(null);
     } catch (err) {
       console.error('Error fetching dashboard data:', err);
       setError('Failed to load dashboard data.');
@@ -90,86 +100,98 @@ const AdminDashboard = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-end mb-4">
           <button
-            onClick={() => { logout(); navigate('/login'); }}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+            onClick={() => {
+              logout();
+              navigate('/login');
+            }}
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
           >
             Logout
           </button>
         </div>
-
-        {/* Dashboard Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {/* Total Users Card */}
-          <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-between">
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">Admin Dashboard</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white shadow rounded-lg p-6 flex items-center">
+            <Users className="h-10 w-10 text-purple-600 mr-4" />
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Users</p>
-              <p className="text-3xl font-bold text-gray-900">{counts.totalUsers}</p>
+              <h2 className="text-lg font-semibold text-gray-900">Users</h2>
+              <p className="text-2xl font-bold text-purple-600">{counts.totalUsers}</p>
             </div>
-            <UserCheck className="h-10 w-10 text-blue-500" />
           </div>
-
-          {/* Total Courses Card */}
-          <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-between">
+          <div className="bg-white shadow rounded-lg p-6 flex items-center">
+            <GraduationCap className="h-10 w-10 text-green-600 mr-4" />
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Courses</p>
-              <p className="text-3xl font-bold text-gray-900">{counts.totalCourses}</p>
+              <h2 className="text-lg font-semibold text-gray-900">Courses</h2>
+              <p className="text-2xl font-bold text-green-600">{counts.totalCourses}</p>
             </div>
-            <GraduationCap className="h-10 w-10 text-green-500" />
           </div>
-
-          {/* Total Applications Card */}
-          <div className="bg-white rounded-lg shadow-sm p-6 flex items-center justify-between">
+          <div className="bg-white shadow rounded-lg p-6 flex items-center">
+            <ClipboardList className="h-10 w-10 text-blue-600 mr-4" />
             <div>
-              <p className="text-sm font-medium text-gray-500">Total Applications</p>
-              <p className="text-3xl font-bold text-gray-900">{counts.totalApplications}</p>
+              <h2 className="text-lg font-semibold text-gray-900">Applications</h2>
+              <p className="text-2xl font-bold text-blue-600">{counts.totalApplications}</p>
             </div>
-            <ClipboardList className="h-10 w-10 text-purple-500" />
           </div>
         </div>
-
-        {/* Quick Actions */}
-        <div className="card mt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link
-              to="/admin/applications"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors"
-            >
-              <FileText className="h-8 w-8 text-blue-600 mr-3" />
-              <div>
-                <h4 className="font-medium text-gray-900">Review Applications</h4>
-                <p className="text-sm text-gray-500">Process pending applications</p>
-              </div>
-            </Link>
-
-            <Link
-              to="/admin/courses"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors"
-            >
-              <BookOpen className="h-8 w-8 text-green-600 mr-3" />
-              <div>
-                <h4 className="font-medium text-gray-900">Manage Courses</h4>
-                <p className="text-sm text-gray-500">Add or edit courses</p>
-              </div>
-            </Link>
-
-            <Link
-              to="/admin/users"
-              className="flex items-center p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-colors"
-            >
-              <Users className="h-8 w-8 text-purple-600 mr-3" />
-              <div>
-                <h4 className="font-medium text-gray-900">User Management</h4>
-                <p className="text-sm text-gray-500">View and manage users</p>
-              </div>
-            </Link>
-
-            <div className="flex items-center p-4 border border-gray-200 rounded-lg bg-gray-50">
-              <TrendingUp className="h-8 w-8 text-gray-400 mr-3" />
-              <div>
-                <h4 className="font-medium text-gray-500">Reports</h4>
-                <p className="text-sm text-gray-400">Coming soon</p>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white shadow rounded-lg p-6 flex items-center">
+            <Clock className="h-10 w-10 text-yellow-600 mr-4" />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Pending</h2>
+              <p className="text-xl font-bold text-yellow-600">{counts.pendingApplications}</p>
+            </div>
+          </div>
+          <div className="bg-white shadow rounded-lg p-6 flex items-center">
+            <CheckCircle className="h-10 w-10 text-green-600 mr-4" />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Approved</h2>
+              <p className="text-xl font-bold text-green-600">{counts.approvedApplications}</p>
+            </div>
+          </div>
+          <div className="bg-white shadow rounded-lg p-6 flex items-center">
+            <XCircle className="h-10 w-10 text-red-600 mr-4" />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Rejected</h2>
+              <p className="text-xl font-bold text-red-600">{counts.rejectedApplications}</p>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Link
+            to="/admin/users"
+            className="flex items-center p-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition"
+          >
+            <Users className="h-8 w-8 text-purple-600 mr-3" />
+            <div>
+              <h4 className="font-medium text-gray-900">User Management</h4>
+              <p className="text-sm text-gray-500">View and manage users</p>
+            </div>
+          </Link>
+          <Link
+            to="/admin/courses"
+            className="flex items-center p-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition"
+          >
+            <GraduationCap className="h-8 w-8 text-green-600 mr-3" />
+            <div>
+              <h4 className="font-medium text-gray-900">Course Management</h4>
+              <p className="text-sm text-gray-500">View and manage courses</p>
+            </div>
+          </Link>
+          <Link
+            to="/admin/applications"
+            className="flex items-center p-4 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition"
+          >
+            <ClipboardList className="h-8 w-8 text-blue-600 mr-3" />
+            <div>
+              <h4 className="font-medium text-gray-900">Applications</h4>
+              <p className="text-sm text-gray-500">View and manage applications</p>
+            </div>
+          </Link>
+          <div className="flex items-center p-4 border border-gray-200 rounded-lg bg-gray-50">
+            <TrendingUp className="h-8 w-8 text-gray-400 mr-3" />
+            <div>
+              <h4 className="font-medium text-gray-500">Reports</h4>
+              <p className="text-sm text-gray-400">Coming soon</p>
             </div>
           </div>
         </div>
