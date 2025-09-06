@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get('/api/auth/me');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/me`);
       setUser(response.data.user);
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { email, password });
       const { token: newToken, user: userData } = response.data;
       localStorage.setItem('token', newToken);
       setToken(newToken);
@@ -58,14 +58,14 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('/api/auth/register', userData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userData);
       const { token: newToken, user: newUser } = response.data;
-      
+
       localStorage.setItem('token', newToken);
       setToken(newToken);
       setUser(newUser);
       axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
-      
+
       toast.success('Registration successful!');
       return { success: true };
     } catch (error) {
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateProfile = async (profileData) => {
     try {
-      const response = await axios.put('/api/auth/profile', profileData);
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/auth/profile`, profileData);
       setUser(response.data.user);
       toast.success('Profile updated successfully!');
       return { success: true };
