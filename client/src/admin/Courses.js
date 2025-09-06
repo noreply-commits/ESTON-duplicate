@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import AdminNavbar from './AdminNavbar';
 
+const API_URL = process.env.REACT_APP_API_URL || '';
+
 const AdminCourses = () => {
   const { user: currentUser } = useAuth();
   const [courses, setCourses] = useState([]);
@@ -38,7 +40,7 @@ const AdminCourses = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch('/api/admin/courses', {
+      const response = await fetch(`${API_URL}/api/admin/courses`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -62,8 +64,8 @@ const AdminCourses = () => {
     
     try {
       const url = editingCourse 
-        ? `/api/admin/courses/${editingCourse.id}`
-        : '/api/admin/courses';
+        ? `${API_URL}/api/admin/courses/${editingCourse.id}`
+        : `${API_URL}/api/admin/courses`;
       
       const method = editingCourse ? 'PUT' : 'POST';
       
@@ -119,7 +121,7 @@ const AdminCourses = () => {
     }
 
     try {
-      const response = await fetch(`/api/admin/courses/${courseId}`, {
+      const response = await fetch(`${API_URL}/api/admin/courses/${courseId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -139,7 +141,7 @@ const AdminCourses = () => {
 
   const handleToggleStatus = async (courseId, currentStatus) => {
     try {
-      const response = await fetch(`/api/admin/courses/${courseId}/toggle-status`, {
+      const response = await fetch(`${API_URL}/api/admin/courses/${courseId}/toggle-status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
