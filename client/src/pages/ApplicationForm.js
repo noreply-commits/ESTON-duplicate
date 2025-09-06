@@ -370,7 +370,7 @@ const response = axios.get(`${process.env.REACT_APP_API_URL}/api/courses`);
     };
     console.log('Submitting application payload:', payload);
     try {
-      axios.post(${process.env.REACT_APP_API_URL}/api/applications, payload);
+      axios.post(${process.env.REACT_APP_API_URL}/api/applications`, payload);
       alert('Application submitted successfully!');
       // Clear all form fields after successful submission
       setFormData({
