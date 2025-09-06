@@ -34,7 +34,7 @@ const AdminApplications = () => {
 
   const fetchApplications = async () => {
     try {
-      const response = await fetch(`/api/applications?search=${searchTerm}&status=${statusFilter}`, {
+      const response = await fetch(`/api/admin/applications?search=${searchTerm}&status=${statusFilter}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -56,7 +56,7 @@ const AdminApplications = () => {
   const handleStatusUpdate = async (applicationId, newStatus, notes = '') => {
     setUpdating(true);
     try {
-      const response = await fetch(`/api/applications/${applicationId}/status`, {
+      const response = await fetch(`/api/admin/applications/${applicationId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
