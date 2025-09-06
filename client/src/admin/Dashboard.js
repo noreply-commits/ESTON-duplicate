@@ -40,7 +40,7 @@ const AdminDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axios.get('/api/admin/dashboard');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/dashboard`);
       const { totalUsers, totalCourses, totalApplications, applicationStatistics } = response.data;
 
       setCounts({
