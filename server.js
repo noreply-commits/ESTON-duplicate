@@ -28,8 +28,16 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
+const allowedOrigins = ['https://estonschool.onrender.com', 'http://localhost:3000'];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://estonschool.onrender.com',
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
