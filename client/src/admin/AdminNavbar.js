@@ -25,7 +25,7 @@ const AdminNavbar = () => {
   };
 
   return (
-   <nav className="bg-gray-800 p-4 pt-0 shadow-md">
+    <nav className="bg-gray-800 p-4 pt-0 shadow-md">
       <div className="flex items-center justify-between">
         {/* Logo or Brand - optional */}
         <div className="text-white font-bold text-xl">Admin Panel</div>
