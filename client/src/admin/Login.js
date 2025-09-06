@@ -23,7 +23,7 @@ const Login = () => {
       if (result.success) {
         // Redirect based on role
         if (result.user?.role === 'admin') {
-          window.location.href = '/admin/dashboard';
+          window.location.href = '/admin';
         } else {
           window.location.href = '/dashboard';
         }
