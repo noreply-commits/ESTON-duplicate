@@ -291,7 +291,7 @@ const ApplicationForm = () => {
     const fetchCourses = async () => {
       setLoadingCourses(true);
       try {
-        const response = await axios.get('/api/courses');
+        const response = axios.get(${process.env.REACT_APP_API_URL}/api/courses);
         setCourses(response.data.courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
@@ -370,7 +370,7 @@ const ApplicationForm = () => {
     };
     console.log('Submitting application payload:', payload);
     try {
-      await axios.post('/api/applications', payload);
+      axios.post(${process.env.REACT_APP_API_URL}/api/applications, payload);
       alert('Application submitted successfully!');
       // Clear all form fields after successful submission
       setFormData({
