@@ -32,10 +32,15 @@ const allowedOrigins = ['https://estonschool.onrender.com', 'http://localhost:30
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.log(`CORS blocked origin: ${origin}`);
+      // Instead of throwing an error, return false to deny the request
+      callback(null, false);
     }
   },
   credentials: true
