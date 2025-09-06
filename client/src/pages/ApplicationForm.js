@@ -291,7 +291,7 @@ const ApplicationForm = () => {
     const fetchCourses = async () => {
       setLoadingCourses(true);
       try {
-        const response = axios.get(${process.env.REACT_APP_API_URL}/api/courses);
+const response = axios.get(`${process.env.REACT_APP_API_URL}/api/courses`);
         setCourses(response.data.courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
