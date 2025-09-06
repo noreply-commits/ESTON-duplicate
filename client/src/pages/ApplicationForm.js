@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaEnvelope, FaPhone, FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaSearch } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const countries = [
@@ -929,7 +929,7 @@ const ApplicationForm = () => {
                 <a href="https://www.eston.edu.gh/our-courses/" className="font-semibold">Courses</a>
                 <a href="https://www.eston.edu.gh/about-us/" className="font-semibold">About Us</a>
                 <a href="https://www.eston.edu.gh/contact-us/" className="font-semibold">Contact Us</a>
-                <a href="/admin" className="font-semibold">Admin</a>
+                <Link to="/admin" className="font-semibold">Admin</Link>
               </nav>
               <div className="header-right-icon ml-4 hidden lg:block">
                 <ul className="flex items-center gap-4 m-0">
@@ -947,7 +947,7 @@ const ApplicationForm = () => {
                   <a href="https://www.eston.edu.gh/our-courses/" className="font-semibold py-2 w-full text-center border-b">Courses</a>
                   <a href="https://www.eston.edu.gh/about-us/" className="font-semibold py-2 w-full text-center border-b">About Us</a>
                   <a href="https://www.eston.edu.gh/contact-us/" className="font-semibold py-2 w-full text-center border-b">Contact Us</a>
-                  <a href="/admin" className="font-semibold py-2 w-full text-center">Admin</a>
+                  <Link to="/admin" className="font-semibold py-2 w-full text-center">Admin</Link>
                 </nav>
               )}
             </div>
