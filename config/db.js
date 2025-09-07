@@ -55,10 +55,10 @@ const createTables = async () => {
     `);
 
     // Applications table
-    await pool.query(`DROP TABLE IF EXISTS applications`);
+ 
 
     await pool.query(`
-      CREATE TABLE applications (
+      CREATE TABLE IF NOT EXISTS applications (
         id SERIAL PRIMARY KEY,
         first_name VARCHAR(255) NOT NULL,
         middle_name VARCHAR(255),
