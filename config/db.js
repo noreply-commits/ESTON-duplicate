@@ -54,8 +54,6 @@ const createTables = async () => {
       )
     `);
 
-    // Applications table
-
 
     await pool.query(`
       CREATE TABLE IF NOT EXISTS applications (
