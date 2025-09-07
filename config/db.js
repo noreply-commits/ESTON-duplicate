@@ -55,8 +55,10 @@ const createTables = async () => {
     `);
 
     // Applications table
+    await pool.query(`DROP TABLE IF EXISTS applications`);
+
     await pool.query(`
-      CREATE TABLE IF NOT EXISTS applications (
+      CREATE TABLE applications (
         id SERIAL PRIMARY KEY,
         first_name VARCHAR(255) NOT NULL,
         middle_name VARCHAR(255),
@@ -81,6 +83,31 @@ const createTables = async () => {
         review_date TIMESTAMP,
         admin_notes TEXT
       )
+    `);
+
+    // Insert dummy data into applications table
+    await pool.query(`
+      INSERT INTO applications (
+        first_name, middle_name, last_name, phone_number, email, gender,
+        residential_address, street_address, street_address_line_2, city_state_province, country,
+        course, institution_name, highest_education, date_of_birth, reason_for_course,
+        how_hear, declaration, status
+      ) VALUES
+      ('John', 'Michael', 'Doe', '+1234567890', 'john.doe@example.com', 'Male',
+       '123 Main St', '123 Main St', 'Apt 4B', 'New York, NY', 'USA',
+       'Bachelor of Computer Science', 'Eston University', 'High School Diploma', '1995-05-15',
+       'To gain knowledge in computer science and pursue a career in software development.',
+       'Internet Search', true, 'pending'),
+      ('Jane', 'Elizabeth', 'Smith', '+1987654321', 'jane.smith@example.com', 'Female',
+       '456 Oak Ave', '456 Oak Ave', '', 'Los Angeles, CA', 'USA',
+       'Bachelor of Business Administration', 'Eston University', 'High School Diploma', '1997-08-22',
+       'Interested in business management and entrepreneurship.',
+       'Social Media', true, 'approved'),
+      ('Ahmed', '', 'Khan', '+447123456789', 'ahmed.khan@example.com', 'Male',
+       '789 Pine Rd', '789 Pine Rd', 'Suite 100', 'London', 'UK',
+       'Master of Information Technology', 'Eston University', 'Bachelor Degree', '1990-12-10',
+       'To advance my career in IT and gain specialized skills.',
+       'Referral', true, 'pending')
     `);
 
 
