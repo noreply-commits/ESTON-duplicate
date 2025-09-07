@@ -100,16 +100,7 @@ const createTables = async () => {
     }
 
     // Insert sample courses if not exists
-    const courseCheck = await pool.query('SELECT * FROM courses LIMIT 1');
-    if (courseCheck.rows.length === 0) {
-      await pool.query(`
-        INSERT INTO courses (name, code, description, duration, requirements, fee) VALUES
-        ('Bachelor of Computer Science', 'BCS001', 'Comprehensive computer science program covering programming, algorithms, and software development', '4 years', 'High school diploma with mathematics', 5000.00),
-        ('Bachelor of Business Administration', 'BBA001', 'Business administration degree focusing on management, marketing, and finance', '4 years', 'High school diploma', 4500.00),
-        ('Master of Information Technology', 'MIT001', 'Advanced IT program for professionals seeking technical leadership roles', '2 years', 'Bachelor degree in related field', 8000.00)
-      `);
-      console.log('Sample courses created');
-    }
+
 
     console.log('Database tables created successfully');
   } catch (error) {
