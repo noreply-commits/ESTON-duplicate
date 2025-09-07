@@ -1,7 +1,7 @@
 const { query } = require('../config/db');
 
 class Application {
-  static async create({ firstName, middleName, lastName, email, gender, residentialAddress, streetAddress, streetAddressLine2, cityStateProvince, country, course, institutionName, highestEducation, dateOfBirth, reasonForCourse, howHear, declaration }) {
+  static async create({ firstName, middleName, lastName,phoneNumber, email, gender, residentialAddress, streetAddress, streetAddressLine2, cityStateProvince, country, course, institutionName, highestEducation, dateOfBirth, reasonForCourse, howHear, declaration }) {
     const res = await query(
       'INSERT INTO applications (first_name, middle_name, last_name, phone_number, email, gender, residential_address, street_address, street_address_line_2, city_state_province, country, course, institution_name, highest_education, date_of_birth, reason_for_course, how_hear, declaration) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING *',
       [firstName, middleName, lastName, phoneNumber, email, gender, residentialAddress, streetAddress, streetAddressLine2, cityStateProvince, country, course, institutionName, highestEducation, dateOfBirth, reasonForCourse, howHear, declaration]
