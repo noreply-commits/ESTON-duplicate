@@ -263,6 +263,7 @@ const ApplicationForm = () => {
     firstName: '',
     middleName: '',
     lastName: '',
+    phoneNumber: '',
     email: '',
     gender: '',
     residentialAddress: '',
@@ -313,7 +314,7 @@ const ApplicationForm = () => {
     const errors = {};
 
     if (currentStep === 1) {
-      const fields = ['firstName', 'lastName', 'email', 'gender', 'dateOfBirth', 'residentialAddress'];
+      const fields = ['firstName', 'lastName', 'phoneNumber', 'email', 'gender', 'dateOfBirth', 'residentialAddress'];
       fields.forEach(field => {
         if (!formData[field]) {
           isValid = false;
@@ -377,6 +378,7 @@ const ApplicationForm = () => {
         firstName: '',
         middleName: '',
         lastName: '',
+        phoneNumber: '',
         email: '',
         gender: '',
         residentialAddress: '',
@@ -1052,6 +1054,15 @@ const ApplicationForm = () => {
                 onChange={handleChange}
                 required={false}
                 error={errors.lastName}
+              />
+              <InputField
+                label="Phone Number"
+                name="phoneNumber"
+                type="tel"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                required={true}
+                error={errors.phoneNumber}
               />
               <InputField
                 label="Email"

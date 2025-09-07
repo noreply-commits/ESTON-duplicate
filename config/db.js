@@ -61,6 +61,7 @@ const createTables = async () => {
         first_name VARCHAR(255) NOT NULL,
         middle_name VARCHAR(255),
         last_name VARCHAR(255) NOT NULL,
+        phone_number VARCHAR(20),
         email VARCHAR(255) UNIQUE NOT NULL,
         gender VARCHAR(50) NOT NULL,
         residential_address VARCHAR(255) NOT NULL,

@@ -12,6 +12,7 @@ const router = express.Router();
 router.post('/', [
   body('firstName').notEmpty(),
   body('lastName').notEmpty(),
+  body('phoneNumber').notEmpty(),
   body('email').isEmail(),
   body('gender').notEmpty(),
   body('residentialAddress').notEmpty(),
@@ -45,6 +46,7 @@ router.post('/', [
       firstName,
       middleName,
       lastName,
+      phoneNumber,
       email,
       gender,
       residentialAddress,
@@ -66,6 +68,7 @@ router.post('/', [
         firstName,
         middleName,
         lastName,
+        phoneNumber,
         email,
         gender,
         residentialAddress,
