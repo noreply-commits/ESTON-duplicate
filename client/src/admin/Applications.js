@@ -135,6 +135,7 @@ const AdminApplications = () => {
       'Application ID': app.id,
       'First Name': app.user_first_name || app.first_name || '',
       'Last Name': app.user_last_name || app.last_name || '',
+      'Phone Number': app.phone_number || '',
       'Email': app.user_email || app.email || '',
       'Gender': app.gender || '',
       'Nationality': app.nationality || '',
@@ -244,6 +245,7 @@ const AdminApplications = () => {
         <tr>
           <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
           <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+          <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
           <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
           <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
           <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
@@ -256,6 +258,7 @@ const AdminApplications = () => {
                   <tr key={application.id} className="hover:bg-gray-50">
                     <td className="px-2 py-4 whitespace-nowrap">{application.id}</td>
                     <td className="px-2 py-4 whitespace-nowrap">{application.first_name} {application.last_name}</td>
+                    <td className="px-2 py-4 whitespace-nowrap">{application.phone_number}</td>
                     <td className="px-2 py-4 whitespace-nowrap">{application.email}</td>
                     <td className="px-2 py-4 whitespace-nowrap">{application.course_name || application.course}</td>
                     <td className="px-2 py-4 whitespace-nowrap">
@@ -327,6 +330,7 @@ const AdminApplications = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                 <div><span className="font-semibold text-gray-700">ID:</span> {selectedApplication.id}</div>
                 <div><span className="font-semibold text-gray-700">Name:</span> {selectedApplication.first_name} {selectedApplication.middle_name} {selectedApplication.last_name}</div>
+                <div><span className="font-semibold text-gray-700">Phone Number:</span> {selectedApplication.phone_number}</div>
                 <div><span className="font-semibold text-gray-700">Email:</span> {selectedApplication.email}</div>
                 <div><span className="font-semibold text-gray-700">Gender:</span> {selectedApplication.gender}</div>
                 <div><span className="font-semibold text-gray-700">Nationality:</span> {selectedApplication.nationality}</div>

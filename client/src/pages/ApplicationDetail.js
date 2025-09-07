@@ -274,6 +274,10 @@ const ApplicationDetail = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
+              <p className="text-sm text-gray-500">Phone Number</p>
+              <p className="font-medium text-gray-900">{application.phone_number}</p>
+            </div>
+            <div>
               <p className="text-sm text-gray-500">Documents Submitted</p>
               <p className="font-medium text-gray-900">
                 {application.documents_submitted ? 'Yes' : 'No'}
