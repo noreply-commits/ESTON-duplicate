@@ -55,14 +55,16 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Eston Admissions Portal API is running' });
 });
 
-// Serve static assets in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+// Serve static assets
+app.use(express.static('client/build'));
+
+// Catch-all handler: serve index.html for client-side routes, but not for API routes
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'API endpoint not found' });
+  }
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
