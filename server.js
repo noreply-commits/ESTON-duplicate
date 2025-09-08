@@ -1,5 +1,4 @@
 const path = require('path');
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -29,8 +28,21 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
+const allowedOrigins = ['https://estonschool.onrender.com', 'http://localhost:3000'];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://54.162.177.3:5000/',
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.log(`CORS blocked origin: ${origin}`);
+      // Instead of throwing an error, return false to deny the request
+      callback(null, false);
+    }
+  },
   credentials: true
 }));
 
@@ -49,8 +61,6 @@ app.use('/api/applications', applicationRoutes); // New route for applications t
 app.use('/api/courses', courseRoutes);
 app.use('/api/admin', adminRoutes);
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Eston Admissions Portal API is running' });
@@ -58,13 +68,9 @@ app.get('/api/health', (req, res) => {
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
-
-app.use(express.static(path.join(__dirname, 'client', 'build')));
-
-
+  app.use(express.static('client/build'));
+  
   app.get('*', (req, res) => {
-
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
