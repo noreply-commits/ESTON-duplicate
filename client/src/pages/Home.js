@@ -34,7 +34,7 @@ const Home = () => {
       <header className="flex items-center justify-between px-8 py-6 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
         <div className="flex items-center gap-4">
           <GraduationCap className="h-16 w-16 text-primary-200" />
-          <span className="text-3xl font-bold">Eston University</span>
+          <span className="text-3xl font-bold">Eston College</span>
         </div>
         <nav className="flex gap-8">
           <Link to="/" className="font-semibold hover:underline">Home</Link>
@@ -88,7 +88,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Eston University?
+              Why Choose Eston College?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               We provide an exceptional learning environment that nurtures talent and fosters innovation.
@@ -120,7 +120,7 @@ const Home = () => {
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of students who have chosen Eston University to shape their future. 
+            Join thousands of students who have chosen Eston College to shape their future. 
             Apply today and take the first step towards your dreams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
