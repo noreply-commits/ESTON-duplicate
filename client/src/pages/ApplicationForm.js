@@ -873,25 +873,7 @@ const ApplicationForm = () => {
 
   
 
-      <section className="page-header flex items-center justify-center min-h-[300px]" style={{ backgroundImage: "url('https://www.eston.edu.gh/wp-content/uploads/2024/03/eston-it-college-header.jpg')" }}>
-        <div className="container flex flex-col items-center justify-center text-center w-full">
-          <h2 className="page-title text-center w-full">Admissions</h2>
-          <div className="header-breadcrumb w-full flex items-center justify-center">
-            <nav role="navigation" aria-label="Breadcrumbs" className="breadcrumb-trail breadcrumbs w-auto">
-              <ul className="trail-items flex items-center justify-center">
-                <li className="trail-item trail-begin">
-                  <a href="https://www.eston.edu.gh/" rel="home">
-                    <span>Home</span>
-                  </a>
-                </li>
-                <li className="trail-item trail-end">
-                  <span>Admissions</span>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </section>
+
 
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl w-full bg-white shadow-xl rounded-lg p-8">
