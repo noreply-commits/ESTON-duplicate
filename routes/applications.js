@@ -121,7 +121,7 @@ router.post('/', [
           <p><strong>Admissions Desk</strong><br>
           Front Desk,<br>
           Techland IT Solutions Ltd, Alajo, Opposit the National Police Training School (Tesano), Greater Accra, Ghana.<br>
-          Helpline: 0302280388 / 0503225669</p>
+          Helpline: 0302280388 / 0508601236</p>
           <p>Thank you and we hope to see you soon.</p>
           <p>Eston IT College | <a href="http://www.eston.edu.gh">www.eston.edu.gh</a></p>
         `,
